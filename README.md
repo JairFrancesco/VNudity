@@ -2,7 +2,16 @@
 
 > Node.js video nudity detector based on nude.js
 
+## Prerequisites
+
+```
+$ sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
+
+```
+
+
 ## Install
+
 
 ```
 $ npm install --save vnudity
