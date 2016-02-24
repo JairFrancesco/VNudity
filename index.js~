@@ -70,22 +70,17 @@ VNudity.prototype.endProcess = function(item, i, res) {
 							  	
   	if (res) {this.counter++;}
   	fs.unlink(this.capturesPath + item, function(err) {//delete each file
-	    if (err) {
-	        return console.error(err);
-	    }
+	    if (err) { return console.error(err);}
 	});
-
   	if (i==(this.numCaptures-1))
 	{	
 		fs.rmdirSync(this.capturesPath); //delete captures path
 		fs.unlink(this.pathNewVideo, function(err) { //delete video
-		    if (err) {
-		        return console.error(err);
-			}
+		    if (err) { return console.error(err);}
 		});
 		var percent = (100*this.counter)/this.numCaptures;
 			res = (percent>35 ? true:false);
-		this.callback("error not defined", res);
+		this.callback(err, res);
 	}
 };
 

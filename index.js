@@ -23,7 +23,7 @@ function VNudity(url, cfg, callback) {
 	this.callback = callback;
 	this.pathNewVideo = pathNewVideo;
 	this.newName = url.hashCode();
-	this.capturesPath =  this.newName + '.vidcap/';
+	this.capturesPath = cfg.storage + this.newName + '.vidcap/';
 
 	new Download({mode: '755'})
 	    .get(url)
