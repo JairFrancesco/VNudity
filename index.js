@@ -30,7 +30,7 @@ function VNudity(url, cfg, callback) {
 	    .rename(url.hashCode() + '.mp4')
 	    .dest(cfg.storage)
 	    .run(function(err, files){
-	    	console.log(err);
+	    	if (err) {console.log(err);}
 	    	self.processVideo();
 	    	
 	    });

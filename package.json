@@ -24,6 +24,7 @@
   "homepage": "https://github.com/JairFrancesco/VNudity#readme",
   "dependencies": {
     "download": "^4.4.3",
+    "fluent-ffmpeg": "^2.0.1",
     "nudity": "0.0.2",
     "vidcap": "^3.0.2"
   }
