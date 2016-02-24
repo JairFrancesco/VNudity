@@ -30,7 +30,7 @@ function VNudity(url, cfg, callback) {
 	    .rename(url.hashCode() + '.mp4')
 	    .dest(cfg.storage)
 	    .run(function(err, files){
-	    	if (err) {console.log(err);}
+	    	if (err) {return console.log(err);}
 	    	self.processVideo();
 	    	
 	    });
@@ -43,6 +43,7 @@ VNudity.prototype.processVideo = function (){
 	var exec = require('child_process').exec;
 	var cmd = 'vidcap -i ' +  self.nSeconds + ' ' + self.pathNewVideo;
 	exec(cmd, function(err, stdout, stderr){
+		if (err) {return console.log(err);}
 		self.processCaptures();
 	});
 	//return this;
@@ -51,12 +52,12 @@ VNudity.prototype.processVideo = function (){
 VNudity.prototype.processCaptures = function () {
 	var self = this;
 	fs.readdir(self.capturesPath, function(err, items) {
+	    if (err) {return console.log(err);}
 	    var numCaptures = items.length;
 	    self.numCaptures = numCaptures;
 	  	items.forEach(function(item, i){
 			nudity.scanFile(self.capturesPath + item, function(err, res){
-				if (err)
-					return console.log(err);
+				if (err) {return console.log(err);}
 				self.endProcess(item, i, res);
 			});
 	  	});
@@ -69,22 +70,17 @@ VNudity.prototype.endProcess = function(item, i, res) {
 							  	
   	if (res) {this.counter++;}
   	fs.unlink(this.capturesPath + item, function(err) {//delete each file
-	    if (err) {
-	        return console.error(err);
-	    }
+	    if (err) { return console.error(err);}
 	});
-
   	if (i==(this.numCaptures-1))
 	{	
 		fs.rmdirSync(this.capturesPath); //delete captures path
 		fs.unlink(this.pathNewVideo, function(err) { //delete video
-		    if (err) {
-		        return console.error(err);
-			}
+		    if (err) { return console.error(err);}
 		});
 		var percent = (100*this.counter)/this.numCaptures;
 			res = (percent>35 ? true:false);
-		this.callback("error not defined", res);
+		this.callback(err, res);
 	}
 };
 
