@@ -42,8 +42,9 @@ module.exports = VNudity;
 VNudity.prototype.processVideo = function (){
 	var self = this; 
 	var exec = require('child_process').exec;
-	var cmd = 'cd '+ folderVideo.slice(0,-1) + ' && vidcap -i ' +  self.nSeconds + ' ' + self.pathNewVideo;
-	exec(cmd, function(err, stdout, stderr){
+	console.log()
+	var cmd = 'vidcap -i ' +  self.nSeconds + ' ' + self.pathNewVideo;
+	exec(cmd, {cwd:this.folderVideo} ,function(err, stdout, stderr){
 		if (err) {return console.log(err);}
 		self.processCaptures();
 	});
