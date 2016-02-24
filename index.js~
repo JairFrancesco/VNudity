@@ -31,6 +31,7 @@ function VNudity(url, cfg, callback) {
 	    .dest(cfg.storage)
 	    .run(function(err, files){
 	    	console.log(err);
+	    	console.log("download finish");
 	    	self.processVideo();
 	    	
 	    });
@@ -40,6 +41,7 @@ module.exports = VNudity;
 
 VNudity.prototype.processVideo = function (){
 	var self = this; 
+	console.log("Realizando capturas");
 	var exec = require('child_process').exec;
 	var cmd = 'vidcap -i ' +  self.nSeconds + ' ' + self.pathNewVideo;
 	exec(cmd, function(err, stdout, stderr){
@@ -50,6 +52,7 @@ VNudity.prototype.processVideo = function (){
 
 VNudity.prototype.processCaptures = function () {
 	var self = this;
+	console.log("Procesando capturas");
 	fs.readdir(self.capturesPath, function(err, items) {
 	    var numCaptures = items.length;
 	    self.numCaptures = numCaptures;
@@ -57,6 +60,7 @@ VNudity.prototype.processCaptures = function () {
 			nudity.scanFile(self.capturesPath + item, function(err, res){
 				if (err)
 					return console.log(err);
+			  	console.log('Contains nudity: ' + res);
 				self.endProcess(item, i, res);
 			});
 	  	});
@@ -84,6 +88,7 @@ VNudity.prototype.endProcess = function(item, i, res) {
 		});
 		var percent = (100*this.counter)/this.numCaptures;
 			res = (percent>35 ? true:false);
+		console.log("porcentaje:", percent);
 		this.callback("error not defined", res);
 	}
 };
