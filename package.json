@@ -1,0 +1,30 @@
+{
+  "name": "vnudity",
+  "version": "1.0.1",
+  "description": "Node.js video nudity detector based on nudity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JairFrancesco/VNudity.git"
+  },
+  "keywords": [
+    "nudity",
+    "video",
+    "detector",
+    "nodejs"
+  ],
+  "author": "jairfrancesco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JairFrancesco/VNudity/issues"
+  },
+  "homepage": "https://github.com/JairFrancesco/VNudity#readme",
+  "dependencies": {
+    "download": "^4.4.3",
+    "nudity": "0.0.2",
+    "vidcap": "^3.0.2"
+  }
+}
