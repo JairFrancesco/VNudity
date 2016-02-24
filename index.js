@@ -23,6 +23,7 @@ function VNudity(url, cfg, callback) {
 	this.callback = callback;
 	this.pathNewVideo = pathNewVideo;
 	this.newName = url.hashCode();
+	this.folderVideo = cfg.storage;
 	this.capturesPath = cfg.storage + this.newName + '.vidcap/';
 
 	new Download({mode: '755'})
@@ -41,7 +42,7 @@ module.exports = VNudity;
 VNudity.prototype.processVideo = function (){
 	var self = this; 
 	var exec = require('child_process').exec;
-	var cmd = 'vidcap -i ' +  self.nSeconds + ' ' + self.pathNewVideo;
+	var cmd = 'cd '+ folderVideo.slice(0,-1) + ' && vidcap -i ' +  self.nSeconds + ' ' + self.pathNewVideo;
 	exec(cmd, function(err, stdout, stderr){
 		if (err) {return console.log(err);}
 		self.processCaptures();
