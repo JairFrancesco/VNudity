@@ -81,6 +81,8 @@ VNudity.prototype.endProcess = function(item, i, res) {
 		});
 		var percent = (100*this.counter)/this.numCaptures;
 			res = (percent>35 ? true:false);
+		var err;
+		if (percent>100 || percent<0) {err="Percent error, verify path captures"}
 		this.callback(err, res);
 	}
 };
