@@ -1,6 +1,6 @@
 {
   "name": "vnudity",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Node.js video nudity detector based on nudity",
   "main": "index.js",
   "scripts": {
