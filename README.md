@@ -25,9 +25,9 @@ $ npm install --save vnudity
 var VNudity = require('vnudity');
 
 new VNudity('https://mme.whatsapp.net/d/kVgx2VsFi0T7z-lYvMUP0FbMlDU/AgWaWTZDB0emjOvhtPQBixCIwAZuYw0GFgFxGetvH0vb.mp4?x=2', 
-	   {storage: "tmp_Video/", nSeconds: 1}, 
+	   {storage: "/tmp/", nSeconds: 1}, 
 	   function (err, res){
-		if (res) {console.log("Adult content");} else {console.log("for all audiences");}				
+			if (res) {console.log("Adult content");} else {console.log("for all audiences");}				
 	   });
 
 ```
